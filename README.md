@@ -1,3 +1,5 @@
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://ibb.co/k6zDMft][img]https://i.ibb.co/G3GMFLq/screenshot.png)
+
 # Subtitle Generator GUI
 
 This Python application provides a graphical user interface (GUI) for generating SRT subtitle files from video files. It utilizes either the standard `openai-whisper` library or the `faster-whisper` library (with Voice Activity Detection (VAD)) for audio transcription. The program supports batch processing of multiple video files and offers options for model selection and word-level timestamps (with Faster Whisper).
