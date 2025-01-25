@@ -1,129 +1,171 @@
-Description:
+Sure! Here's your documentation reformatted with Markdown for better readability on GitHub:
 
-This Python application provides a graphical user interface (GUI) for generating SRT subtitle files from video files. It utilizes either the standard openai-whisper library or the faster-whisper library (with voice activity detection (VAD)) for audio transcription. The program supports batch processing of multiple video files and offers options for model selection and word-level timestamps (with Faster Whisper).
+---
 
-Key Features:
+# Subtitle Generator GUI
 
-Video File Input: Allows users to select one or more video files (e.g., MP4, MOV, MKV, AVI) for subtitle generation.
+This Python application provides a graphical user interface (GUI) for generating SRT subtitle files from video files. It utilizes either the standard `openai-whisper` library or the `faster-whisper` library (with Voice Activity Detection (VAD)) for audio transcription. The program supports batch processing of multiple video files and offers options for model selection and word-level timestamps (with Faster Whisper).
 
-Model Selection: Provides a dropdown menu to select from various openai-whisper models (tiny, base, small, medium, large).
+## Table of Contents
 
-Faster Whisper Option: Enables the use of faster-whisper for faster processing and built-in voice activity detection.
+- [Key Features](#key-features)
+- [Technical Details](#technical-details)
+  - [Dependencies](#dependencies)
+  - [Core Functionality](#core-functionality)
+    - [`convert_to_srt`](#convert_to_srtsegments-progress_callbacknone)
+    - [SubtitleGeneratorGUI Class](#subtitlegeneratorgui-class)
+  - [Model Loading](#model-loading)
+  - [Transcription](#transcription)
+  - [Output](#output)
+- [User Guide](#user-guide)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+  - [Using the GUI](#using-the-gui)
+    - [Add Video Files](#add-video-files)
+    - [Select Model](#select-model)
+    - [Faster Whisper Option](#faster-whisper-option)
+    - [Word-Level Timestamps](#word-level-timestamps)
+    - [Generate Subtitles](#generate-subtitles)
+    - [Progress](#progress)
+    - [Status Updates](#status-updates)
+    - [Output Files](#output-files)
+    - [Removal/Clear](#removalclear)
+- [Troubleshooting](#troubleshooting)
+- [Notes](#notes)
 
-Word-Level Timestamps: With Faster Whisper, users can choose to generate word-level timestamp information (more granular).
+---
 
-Progress Tracking: Displays overall progress across all files, as well as individual progress within each file.
+## Key Features
 
-Error Handling: Catches and reports errors during model loading or transcription.
+- **Video File Input**: Select one or more video files (e.g., MP4, MOV, MKV, AVI) for subtitle generation.
+- **Model Selection**: Choose from various `openai-whisper` models (`tiny`, `base`, `small`, `medium`, `large`) via a dropdown menu.
+- **Faster Whisper Option**: Utilize `faster-whisper` for faster processing and built-in voice activity detection (VAD).
+- **Word-Level Timestamps**: Generate more granular word-level timestamp information when using Faster Whisper.
+- **Progress Tracking**: Monitor overall progress across all files and individual progress within each file.
+- **Error Handling**: Automatically catch and report errors during model loading or transcription.
+- **Clear Status Updates**: Receive real-time updates on the application's status, such as model loading, file processing, and completion.
 
-Clear Status Updates: Informs the user about the current status of the application, such as model loading, file processing, and completion.
+## Technical Details
 
-Technical Details:
+### Dependencies
 
-Dependencies:
+- **tkinter**: For creating the graphical user interface.
+- **whisper** (or **openai-whisper**): For audio transcription.
+- **faster-whisper** (optional): For faster transcription with VAD.
+- **os**, **threading**: Standard Python libraries for file system interaction and multithreading.
 
-tkinter: For creating the graphical user interface.
+### Core Functionality
 
-whisper (or openai-whisper): For audio transcription.
+#### `convert_to_srt(segments, progress_callback=None)`
 
-faster-whisper (optional): For faster transcription with VAD.
+Converts transcription segments to SRT format. This function also accepts a `progress_callback` function, allowing it to update the progress of an individual file during processing.
 
-os, threading: Standard Python libraries for file system interaction and multithreading.
+#### `SubtitleGeneratorGUI` Class
 
-Core Functionality:
+The main application class that:
 
-convert_to_srt(segments, progress_callback=None): Converts transcription segments to SRT format. This function also accepts a progress_callback function, allowing it to update the progress of an individual file during processing.
+- Handles UI creation and user interactions.
+- Loads the specified Whisper model.
+- Processes video files and converts output to SRT files.
+- Manages status updates and overall progress.
+- Utilizes threading to prevent freezing the GUI while processing.
 
-SubtitleGeneratorGUI Class: The main application class:
+### Model Loading
 
-Handles UI creation and user interactions.
+Loads the selected `openai-whisper` or `faster-whisper` model when processing starts.
 
-Loads the specified Whisper model.
+### Transcription
 
-Processes video files and converts output to SRT files.
+- Uses the chosen model (`openai-whisper` or `faster-whisper`) to transcribe the audio of the video files.
+- `faster-whisper` is used with VAD (Voice Activity Detection), improving performance by only processing segments with speech.
+- The word-level timestamp option can be enabled with `faster-whisper`.
 
-Manages status updates and overall progress.
+### Output
 
-Uses threading to prevent freezing the GUI while processing.
+Generates SRT subtitle files with the same base name as the input video file, saving them in the same directory.
 
-Model Loading:
+## User Guide
 
-Loads the selected openai-whisper or faster-whisper model when processing starts.
+### Installation
 
-Transcription:
+1. **Prerequisites**:
+   - Ensure you have Python installed (3.7 or higher recommended).
 
-Uses the chosen model (openai-whisper or faster-whisper) to transcribe the audio of the video files.
+2. **Install Required Packages**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   *Assuming you have a `requirements.txt` file containing `openai-whisper` and/or `faster-whisper`.*
 
-faster-whisper is used with VAD (voice activity detection), improving performance by only processing segments with speech.
+### Running the Application
 
-The word-level timestamp option can be enabled with faster-whisper.
+Execute the Python script:
 
-Output: Generates SRT subtitle files with the same base name as the input video file, saving them in the same directory.
-
-User Guide:
-
-Installation:
-
-Ensure you have Python installed (3.7 or higher recommended).
-
-Install the required packages using pip:
-
-pip install -r requirements.txt
-content_copy
-download
-Use code with caution.
-Bash
-
-(Assuming you have a requirements.txt file containing openai-whisper and/or faster-whisper)
-
-Running the Application:
-
-Execute the Python script.
-
-python your_script_name.py #Replace with the name of the .py file.
-content_copy
-download
-Use code with caution.
-Bash
+```bash
+python your_script_name.py  # Replace with the name of the .py file.
+```
 
 A GUI window will open.
 
-Using the GUI:
+### Using the GUI
 
-Add Video Files: Click the "Add Files" button to select one or more video files.
+#### Add Video Files
 
-Select Model: Choose a Whisper model size (tiny, base, small, medium, large) from the dropdown.
+- Click the **"Add Files"** button to select one or more video files.
 
-Faster Whisper Option: Check the "Use Faster Whisper (with VAD)" checkbox to use Faster Whisper for potentially faster and more accurate results.
+#### Select Model
 
-Word-Level Timestamps: If using Faster Whisper, check the "Use Word-Level Timestamps" checkbox for granular timestamps.
+- Choose a Whisper model size (`tiny`, `base`, `small`, `medium`, `large`) from the dropdown menu.
 
-Generate Subtitles: Click the "Generate Subtitles" button.
+#### Faster Whisper Option
 
-Progress:
+- Check the **"Use Faster Whisper (with VAD)"** checkbox to utilize Faster Whisper for potentially faster and more accurate results.
 
-The "Overall Progress" bar shows the progress of all video files.
+#### Word-Level Timestamps
 
-The "File Progress" bar shows the progress of the current video file.
+- If using Faster Whisper, check the **"Use Word-Level Timestamps"** checkbox for granular timestamps.
 
-Status Updates: The "Status" label displays the current action being performed (e.g., model loading, processing files).
+#### Generate Subtitles
 
-Output Files: The generated SRT files will be saved in the same directory as the input video files with the same name.
+- Click the **"Generate Subtitles"** button to start the transcription and subtitle generation process.
 
-Removal/Clear: The "Remove Selected" button removes the currently selected file(s) and the "Clear All" button will remove all files from the file list.
+#### Progress
 
-Troubleshooting:
+- **Overall Progress**: Shows the progress of all video files.
+- **File Progress**: Shows the progress of the current video file.
 
-"Faster Whisper package is not installed": Make sure you have the faster-whisper package installed.
+#### Status Updates
 
-Errors during processing: Check the error message for clues about what went wrong. This could be related to file access, audio issues, or model problems.
+- The **"Status"** label displays the current action being performed (e.g., model loading, processing files).
 
-If no audio is detected, no subtitles may be generated.
+#### Output Files
 
-Notes:
+- The generated SRT files will be saved in the same directory as the input video files with the same name.
 
-The faster-whisper option with VAD may provide faster processing due to only processing voice segments.
+#### Removal/Clear
 
-The "Word-Level Timestamps" option generates more detailed subtitles but increases computational overhead with faster-whisper.
+- **Remove Selected**: Removes the currently selected file(s) from the list.
+- **Clear All**: Removes all files from the file list.
 
-This documentation aims to provide a clear and comprehensive overview of the application, covering its functionality and how to use it effectively.
+## Troubleshooting
+
+- **"Faster Whisper package is not installed"**:
+  - Ensure you have the `faster-whisper` package installed:
+    ```bash
+    pip install faster-whisper
+    ```
+
+- **Errors during processing**:
+  - Check the error message for clues about what went wrong. Possible issues could relate to file access, audio problems, or model-related errors.
+
+- **No subtitles generated**:
+  - If no audio is detected in the video file, no subtitles may be generated.
+
+## Notes
+
+- The **Faster Whisper** option with VAD may provide faster processing by only handling voice segments.
+- The **Word-Level Timestamps** option generates more detailed subtitles but increases computational overhead when using Faster Whisper.
+
+---
+
+Feel free to customize this documentation further to suit your project's needs!
