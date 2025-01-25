@@ -1,4 +1,5 @@
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://ibb.co/k6zDMft][img]https://i.ibb.co/G3GMFLq/screenshot.png)
+
+![screenshot](https://github.com/user-attachments/assets/4e21e892-9380-4718-a704-900e51d31a26)
 
 # Subtitle Generator GUI
 
