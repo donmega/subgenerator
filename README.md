@@ -1,7 +1,3 @@
-Sure! Here's your documentation reformatted with Markdown for better readability on GitHub:
-
----
-
 # Subtitle Generator GUI
 
 This Python application provides a graphical user interface (GUI) for generating SRT subtitle files from video files. It utilizes either the standard `openai-whisper` library or the `faster-whisper` library (with Voice Activity Detection (VAD)) for audio transcription. The program supports batch processing of multiple video files and offers options for model selection and word-level timestamps (with Faster Whisper).
@@ -165,7 +161,3 @@ A GUI window will open.
 
 - The **Faster Whisper** option with VAD may provide faster processing by only handling voice segments.
 - The **Word-Level Timestamps** option generates more detailed subtitles but increases computational overhead when using Faster Whisper.
-
----
-
-Feel free to customize this documentation further to suit your project's needs!
